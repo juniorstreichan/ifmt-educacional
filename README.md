@@ -1,6 +1,6 @@
 # IFMT EDUCACIONAL
 Trabalho da Disciplina de Arquitetura Orientada a Serviços (SOA)
-
+![enter image description here](https://raw.githubusercontent.com/juniorstreichan/ifmt-educacional/master/ModeloDominio.png)
 1. **DEFINIR UMA LISTA DE** <br />
 
 	- SERVIÇOS UTILITÁRIOS <br />
