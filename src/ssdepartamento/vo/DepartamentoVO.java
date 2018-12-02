@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import sscampus.vo.CampusVO;
 import ssendereco.vo.TelefoneVO;
 
 @Entity
@@ -23,7 +25,10 @@ public class DepartamentoVO extends EntidadeVO {
     protected Long id;
     
     @Column(length = 50, nullable = false)
-    private String nome;
+    private String nome;    
+    
+    @ManyToOne
+    private CampusVO campus;
     
     @ElementCollection
     @CollectionTable(
