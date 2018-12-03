@@ -14,6 +14,22 @@ public class AvaliacaoVO extends BaseVO{
     @Column(nullable = false)
     private Date data;
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
     @Override
     public String toString() {
         return this.descricao + ", " + this.data ;
