@@ -76,7 +76,8 @@ public class EnderecoVO extends BaseVO {
     public void setBairro(BairroVO bairro) {
         this.bairro = bairro;
     }
-
+    
+    @Override
     public boolean isValido() {
         boolean resp = true;
 
