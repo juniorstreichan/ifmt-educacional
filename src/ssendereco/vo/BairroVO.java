@@ -18,15 +18,15 @@ public class BairroVO extends EntidadeVO{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    
+
     @Column(length = 40, nullable = false)
     private String nome;
-    
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
     private MunicipioVO municipio;
 
     public BairroVO() {
-       
+
     }
 
     public BairroVO(String nome, MunicipioVO municipio) {
@@ -86,6 +86,5 @@ public class BairroVO extends EntidadeVO{
     public String toString() {
         return this.nome.trim()+", "+this.municipio;
     }
-    
-    
+
 }
