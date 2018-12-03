@@ -2,10 +2,12 @@ package ssdepartamento.vo;
 
 import base.vo.EntidadeVO;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import sscampus.vo.CampusVO;
 import ssendereco.vo.TelefoneVO;
+import ssprofessor.vo.ProfessorVO;
 
 @Entity
 @Table(name = "departamento")
@@ -27,7 +30,7 @@ public class DepartamentoVO extends EntidadeVO {
     @Column(length = 50, nullable = false)
     private String nome;    
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
     private CampusVO campus;
     
     @ElementCollection
