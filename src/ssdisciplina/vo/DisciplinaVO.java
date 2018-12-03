@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import ssbibliografia.vo.BibliografiaVO;
-import ssendereco.vo.TelefoneVO;
 import ssenum.RegimeEnum;
 
 @Entity
