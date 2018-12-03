@@ -32,7 +32,7 @@ public class CampusDAO extends DAO<CampusVO> {
         try {
             Query qr = this.entityManager.createQuery("SELECT c FROM CampusVO c WHERE c.nome LIKE :nome");
 
-            qr.setParameter("nome", nome);
+            qr.setParameter("nome", nome+"%");
 
             return qr.getResultList();
 
