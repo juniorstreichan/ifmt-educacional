@@ -16,6 +16,12 @@ public abstract class Negocio<VO extends EntidadeVO> implements INegocio<VO> {
         if (vo == null) {
             return new RetornoNegocio(false, "Dados inconsistentes - elemento nulo");
         }
+        if (vo.getId() == null) {
+            return new RetornoNegocio(false, "Dados inconsistentes - id nulo");
+        }
+        if (buscarPorId(vo.getId()) != null) {
+            return new RetornoNegocio(false, "Já existe um registro com o id " + vo.getId());
+        }
         if (!vo.isValido()) {
             return new RetornoNegocio(false, vo.getValidacaoMsg());
         }
@@ -29,6 +35,9 @@ public abstract class Negocio<VO extends EntidadeVO> implements INegocio<VO> {
         }
         if (vo.getId() == null) {
             return new RetornoNegocio(false, "O identificador dos dados está vazio!");
+        }
+        if (buscarPorId(vo.getId()) == null) {
+            return new RetornoNegocio(false, "Não existe um registro com o id " + vo.getId());
         }
         if (!vo.isValido()) {
             return new RetornoNegocio(false, vo.getValidacaoMsg());
@@ -44,12 +53,15 @@ public abstract class Negocio<VO extends EntidadeVO> implements INegocio<VO> {
         if (vo.getId() == null) {
             return new RetornoNegocio(false, "O identificador dos dados está vazio!");
         }
+        if (buscarPorId(vo.getId()) == null) {
+            return new RetornoNegocio(false, "Não existe um registro com o id " + vo.getId());
+        }
         return new RetornoNegocio(true, "Dados Válidos para a Exclusão");
     }
     
     public RetornoNegocio validarBuscaPorId(String strId) {
         if (strId == null || strId.trim().isEmpty()) {
-            return new RetornoNegocio(false, "Dados inconsistentes - elemento vazio");
+            return new RetornoNegocio(false, "Dados inconsistentes - id vazio");
         }
         try {
             Long.parseLong(strId);
@@ -66,6 +78,19 @@ public abstract class Negocio<VO extends EntidadeVO> implements INegocio<VO> {
             }
         }
         return null;
+    }
+    
+    public void alterar(VO vo) {
+        excluir(vo);
+        incluir(vo);
+    }
+    
+    public void incluir(VO vo) {
+        listaVO.add(vo);
+    }
+    
+    public void excluir(VO vo) {
+        listaVO.remove(vo);
     }
     
 }
