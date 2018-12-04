@@ -8,17 +8,17 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import ssbibliografia.vo.BibliografiaVO;
+import ssdisciplina.vo.DisciplinaVO;
 import servico.Servico;
-import ssbibliografia.negocio.Bibliografia;
+import ssdisciplina.negocio.Disciplina;
 
-@Path("/Bibliografia")
-public class ServicoBibliografia extends Servico<BibliografiaVO> {
+@Path("/Disciplina")
+public class ServicoDisciplina extends Servico<DisciplinaVO> {
 
-    public ServicoBibliografia() {
-        super(new Bibliografia(Bibliografia.getListaBibliografia()), BibliografiaVO.class);
+    public ServicoDisciplina() {
+        super(new Disciplina(Disciplina.getListaDisciplina()), DisciplinaVO.class);
     }
-
+    
     @GET
     @Path("/buscarPorId")
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,5 +53,5 @@ public class ServicoBibliografia extends Servico<BibliografiaVO> {
     public String cadastrar(String strObjeto) {
         return super.cadastrar(strObjeto);
     }
-
+    
 }
