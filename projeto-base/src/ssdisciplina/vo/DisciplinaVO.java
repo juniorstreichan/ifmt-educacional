@@ -2,12 +2,14 @@ package ssdisciplina.vo;
 
 import base.vo.EntidadeVO;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import ssbibliografia.vo.BibliografiaVO;
 import ssenum.RegimeEnum;
@@ -20,16 +22,16 @@ public class DisciplinaVO extends EntidadeVO {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
-    @Column
+    @Column(length = 50, nullable = false)
     private String codigo;
     
     @Column(length = 50, nullable = false)
     private String nome;
     
-    @Column(nullable = false)
+    @Column(length = 100, nullable = false)
     private String objetivo;
     
-    @Column(nullable = false)
+    @Column(length = 100, nullable = false)
     private String ementa;
     
     @Column(nullable = false)
@@ -41,8 +43,10 @@ public class DisciplinaVO extends EntidadeVO {
     @Column(nullable = false)
     private int horasPraticas;
     
+    @OneToMany
     private BibliografiaVO bibliografiasBasicas;
     
+    @OneToMany
     private BibliografiaVO bibliografiasComplementares;
     
     @Enumerated(EnumType.ORDINAL)
@@ -138,9 +142,44 @@ public class DisciplinaVO extends EntidadeVO {
     public boolean isValido() {
         boolean resp = true;
 
+        if (this.codigo == null || this.codigo.length() == 0 || this.codigo.length() > 50) {
+            this.validacaoMsg += "\nCodigo  inválido";
+            resp = false;
+        }
+        
         if (this.nome == null || this.nome.length() == 0 || this.nome.length() > 50) {
             this.validacaoMsg += "\nNome  invalido";
             resp = false;
+        }
+        
+        if (this.ementa == null || this.ementa.length() == 0 || this.ementa.length() > 100) {
+            this.validacaoMsg += "\nEmenta inválida";
+            resp = false;
+        }
+        
+        if (this.objetivo == null || this.objetivo.length() == 0 || this.objetivo.length() > 100) {
+            this.validacaoMsg += "\nObjetivo inválido";
+            resp = false;
+        }
+        
+        if (this.bibliografiasBasicas == null) {
+            this.validacaoMsg += "Bibliografias básicas não podem ser nulas para esta disciplina";
+            resp = false;
+        } else {
+            if (!this.bibliografiasBasicas.isValido()) {
+                this.validacaoMsg += this.bibliografiasBasicas.getValidacaoMsg();
+                resp = false;
+            }
+        }
+        
+        if (this.bibliografiasComplementares == null) {
+            this.validacaoMsg += "Bibliografias complementares não podem ser nulas para esta disciplina";
+            resp = false;
+        } else {
+            if (!this.bibliografiasComplementares.isValido()) {
+                this.validacaoMsg += this.bibliografiasComplementares.getValidacaoMsg();
+                resp = false;
+            }
         }
 
         return resp;

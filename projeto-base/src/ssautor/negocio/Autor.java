@@ -15,7 +15,7 @@ public class Autor extends Negocio<AutorVO> {
         List<AutorVO> listaAutor = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             AutorVO autor = new AutorVO();
-            autor.setId((i + 1));
+            autor.setId((i + 1L));
             autor.setNome("Autor " + (i + 1));
             listaAutor.add(autor);
         }

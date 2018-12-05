@@ -23,11 +23,11 @@ public class GradeCurricularVO extends EntidadeVO {
     @Column(length = 50, nullable = false)
     private String identificador;
     
-    @Column
+    @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataInicio;
     
-    @Column
+    @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataFim;
     
@@ -87,7 +87,16 @@ public class GradeCurricularVO extends EntidadeVO {
             this.validacaoMsg += "\nIdentificador  invalido";
             resp = false;
         }
-
+        
+        if (this.dataInicio == null) {
+            this.validacaoMsg += "\nData de início inválida";
+            resp = false;
+        }
+        
+        if (this.dataFim == null) {
+            this.validacaoMsg += "\nData fim inválida";
+            resp = false;
+        }
         return resp;
     }
 

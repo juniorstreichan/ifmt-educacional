@@ -3,6 +3,8 @@ package ssplanoensino.vo;
 import base.vo.BaseVO;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import ssavaliacao.vo.AvaliacaoVO;
 import ssdisciplina.vo.DisciplinaVO;
 import ssprofessor.vo.ProfessorVO;
@@ -11,21 +13,25 @@ import ssunidadeconteudo.vo.UnidadeConteudoVO;
 @Embeddable
 public class PlanoEnsinoVO extends BaseVO {
     
+    @ManyToOne
     private ProfessorVO professor;
     
-    @Column
+    @Column(length = 50, nullable = false)
     private String periodoLetivo;
     
+    @OneToMany
     private DisciplinaVO disciplinas;
     
-    @Column
+    @Column(length = 50, nullable = false)
     private String metodologia;
     
+    @OneToMany
     private UnidadeConteudoVO unidadesConteudoVO;
     
+    @OneToMany
     private AvaliacaoVO avaliacoes;
     
-    @Column
+    @Column(length = 50, nullable = false)
     private String criterioAvaliacao;
 
     public ProfessorVO getProfessor() {
@@ -98,8 +104,18 @@ public class PlanoEnsinoVO extends BaseVO {
     public boolean isValido() {
         boolean resp = true;
 
-        if (this.periodoLetivo == null || this.periodoLetivo.length() == 0 || this.periodoLetivo.length() > 100) {
+        if (this.periodoLetivo == null || this.periodoLetivo.length() == 0 || this.periodoLetivo.length() > 50) {
             this.validacaoMsg += "Período letivo inválido";
+            resp = false;
+        }
+        
+        if (this.metodologia == null || this.metodologia.length() == 0 || this.metodologia.length() > 100) {
+            this.validacaoMsg += "Metodologia inválida";
+            resp = false;
+        }
+        
+        if (this.criterioAvaliacao == null || this.criterioAvaliacao.length() == 0 || this.criterioAvaliacao.length() > 100) {
+            this.validacaoMsg += "Metodologia inválida";
             resp = false;
         }
         return resp;

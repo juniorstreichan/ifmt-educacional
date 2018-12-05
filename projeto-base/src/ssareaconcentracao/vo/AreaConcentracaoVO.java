@@ -12,6 +12,13 @@ public class AreaConcentracaoVO extends BaseVO {
     
     @Column(length = 100, nullable = false)
     private String descricao;
+    
+    public AreaConcentracaoVO(){}
+    
+    public AreaConcentracaoVO(String identificador, String descricao){
+        this.identificador = identificador;
+        this.descricao = descricao;
+    }
 
     public String getIdentificador() {
         return identificador;

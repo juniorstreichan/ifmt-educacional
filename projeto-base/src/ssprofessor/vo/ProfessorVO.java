@@ -24,6 +24,19 @@ public class ProfessorVO extends PessoaFisicaVO {
     
     @Column(length = 50, nullable = false)
     private String email;
+    
+    public ProfessorVO(){}
+    
+    public ProfessorVO(String matricula, String email){
+        this.matricula = matricula;
+        this.email = email;
+    }
+    
+    public ProfessorVO(String matricula, String email, DepartamentoVO lotacao){
+        this.matricula = matricula;
+        this.email = email;
+        this.lotacao = lotacao;
+    }
 
     public String getMatricula() {
         return matricula;
@@ -47,5 +60,21 @@ public class ProfessorVO extends PessoaFisicaVO {
 
     public void setEmail(String email) {
         this.email = email;
-    }  
+    }
+    
+    @Override
+    public boolean isValido() {
+        boolean resp = true;
+
+        if (this.matricula == null || this.matricula.length() == 0 || this.matricula.length() > 50) {
+            this.validacaoMsg += "\nMatrícula  inválida";
+            resp = false;
+        }
+        
+        if (this.email == null || this.email.length() == 0 || this.email.length() > 50) {
+            this.validacaoMsg += "\nEmail inválido";
+            resp = false;
+        }
+        return resp;
+    }
 }

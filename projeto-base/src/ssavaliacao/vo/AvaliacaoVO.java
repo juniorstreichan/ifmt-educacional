@@ -4,6 +4,7 @@ import base.vo.BaseVO;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
 
 @Embeddable
 public class AvaliacaoVO extends BaseVO{
@@ -12,8 +13,16 @@ public class AvaliacaoVO extends BaseVO{
     private String descricao;
     
     @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date data;
-
+    
+    public AvaliacaoVO(){}
+    
+    public AvaliacaoVO(String descricao, Date data){
+        this.descricao = descricao;
+        this.data = data;
+    }
+    
     public String getDescricao() {
         return descricao;
     }

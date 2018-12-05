@@ -18,7 +18,7 @@ public class CursoVO extends EntidadeVO {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Long id;
     
-    @Column
+    @Column(length = 50, nullable = false)
     private String codigo;
     
     @Column(length = 50, nullable = false)
@@ -27,6 +27,19 @@ public class CursoVO extends EntidadeVO {
     @ManyToOne
     private DepartamentoVO departamento;
 
+    public CursoVO(){}
+    
+    public CursoVO(String codigo, String nome){
+        this.codigo = codigo;
+        this.nome = nome;
+    }
+    
+    public CursoVO(String codigo, String nome, DepartamentoVO departamento){
+        this.codigo = codigo;
+        this.nome = nome;
+        this.departamento = departamento;
+    }
+    
     public String getCodigo() {
         return codigo;
     }
@@ -60,11 +73,15 @@ public class CursoVO extends EntidadeVO {
     public boolean isValido() {
         boolean resp = true;
 
-        if (this.nome == null || this.nome.length() == 0 || this.nome.length() > 50) {
-            this.validacaoMsg += "\nNome  invalido";
+        if (this.codigo == null || this.codigo.length() == 0 || this.codigo.length() > 50) {
+            this.validacaoMsg += "\nCodigo inválido";
             resp = false;
         }
-
+        
+        if (this.nome == null || this.nome.length() == 0 || this.nome.length() > 50) {
+            this.validacaoMsg += "\nNome  inválido";
+            resp = false;
+        }
         return resp;
     }
 

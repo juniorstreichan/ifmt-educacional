@@ -1,6 +1,7 @@
 package ssdepartamento.vo;
 
 import base.vo.EntidadeVO;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
@@ -17,7 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import sscampus.vo.CampusVO;
 import ssendereco.vo.TelefoneVO;
-import ssprofessor.vo.ProfessorVO;
 
 @Entity
 @Table(name = "departamento")
@@ -40,6 +40,15 @@ public class DepartamentoVO extends EntidadeVO {
             uniqueConstraints= @UniqueConstraint(columnNames={"departamento_fone", "numero"})
     )
     private Set<TelefoneVO> listaFones;
+    
+    public DepartamentoVO(){
+        this.listaFones = new HashSet();
+    }
+    
+    public DepartamentoVO(String nome, CampusVO campus){
+        this.nome = nome;
+        this.campus = campus;
+    }
 
     public String getNome() {
         return nome;
@@ -55,6 +64,14 @@ public class DepartamentoVO extends EntidadeVO {
 
     public void setListaFones(Set<TelefoneVO> listaFones) {
         this.listaFones = listaFones;
+    }
+
+    public CampusVO getCampus() {
+        return campus;
+    }
+
+    public void setCampus(CampusVO campus) {
+        this.campus = campus;
     }
     
     @Override
@@ -77,7 +94,6 @@ public class DepartamentoVO extends EntidadeVO {
                 resp = false;
             }
         }
-
         return resp;
     }
 

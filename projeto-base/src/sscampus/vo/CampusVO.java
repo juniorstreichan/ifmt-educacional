@@ -2,6 +2,7 @@ package sscampus.vo;
 
 import base.vo.EntidadeVO;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,15 @@ public class CampusVO extends EntidadeVO {
     @Column(length = 50, nullable = false)
     private String nome;
     
-    @Column(length = 50, nullable = false)
+    @Embedded
     private EnderecoVO enderecoVO;
 
+    public CampusVO(){}
+    
+    public CampusVO(String nome, EnderecoVO enderecoVO){
+        this.nome = nome;
+        this.enderecoVO = enderecoVO;
+    }
     public String getNome() {
         return nome;
     }
@@ -54,13 +61,12 @@ public class CampusVO extends EntidadeVO {
         }
 
         if (this.enderecoVO == null) {
-            this.validacaoMsg += "Endereco nao pode ser nulo para a Pessoa";
+            this.validacaoMsg += "Endereco nao pode ser nulo";
             resp = false;
         } else if (!this.enderecoVO.isValido()) {
             this.validacaoMsg += this.enderecoVO.getValidacaoMsg();
             resp = false;
         }
-
         return resp;
     }
 

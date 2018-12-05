@@ -25,9 +25,7 @@ public class BairroVO extends EntidadeVO{
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
     private MunicipioVO municipio;
 
-    public BairroVO() {
-
-    }
+    public BairroVO(){}
 
     public BairroVO(String nome, MunicipioVO municipio) {
         this.municipio = municipio;
@@ -78,7 +76,6 @@ public class BairroVO extends EntidadeVO{
                 resp = false;
             }
         }
-
         return resp;
     }
 
@@ -86,5 +83,4 @@ public class BairroVO extends EntidadeVO{
     public String toString() {
         return this.nome.trim()+", "+this.municipio;
     }
-
 }
