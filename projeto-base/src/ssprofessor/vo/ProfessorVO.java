@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import ssareaconcentracao.vo.AreaConcentracaoVO;
 import ssdepartamento.vo.DepartamentoVO;
 import sspessoa.vo.PessoaFisicaVO;
 
@@ -25,6 +27,9 @@ public class ProfessorVO extends PessoaFisicaVO {
     @Column(length = 50, nullable = false)
     private String email;
     
+    @ManyToMany
+    private AreaConcentracaoVO areaConcentracaoVO;
+    
     public ProfessorVO(){}
     
     public ProfessorVO(String matricula, String email){
@@ -32,10 +37,11 @@ public class ProfessorVO extends PessoaFisicaVO {
         this.email = email;
     }
     
-    public ProfessorVO(String matricula, String email, DepartamentoVO lotacao){
+    public ProfessorVO(String matricula, String email, DepartamentoVO lotacao, AreaConcentracaoVO areaConcentracaoVO){
         this.matricula = matricula;
         this.email = email;
         this.lotacao = lotacao;
+        this.areaConcentracaoVO = areaConcentracaoVO;
     }
 
     public String getMatricula() {
