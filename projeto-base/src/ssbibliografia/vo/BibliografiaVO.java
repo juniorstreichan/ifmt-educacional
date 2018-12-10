@@ -37,7 +37,7 @@ public class BibliografiaVO extends EntidadeVO {
     private Integer edicao;
     
     @Column()
-    @ManyToMany(mappedBy = "BibliografiaVO", targetEntity = AutorVO.class)
+    @ManyToMany(targetEntity = AutorVO.class)
     @JoinTable(name = "bibliografiaAutor", joinColumns = {@JoinColumn(name = "idBibliografia")}, 
             inverseJoinColumns = {@JoinColumn(name = "idAutor")})
     private List<AutorVO> listaAutor;

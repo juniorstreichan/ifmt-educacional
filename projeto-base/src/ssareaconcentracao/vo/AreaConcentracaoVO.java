@@ -2,12 +2,14 @@ package ssareaconcentracao.vo;
 
 import base.vo.EntidadeVO;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Embeddable
+@Entity
+@Table(name = "AreaConcentracao")
 public class AreaConcentracaoVO extends EntidadeVO {
     
     @Id

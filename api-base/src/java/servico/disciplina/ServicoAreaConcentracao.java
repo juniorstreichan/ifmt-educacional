@@ -17,6 +17,7 @@ import ssareaconcentracao.vo.AreaConcentracaoVO;
  *
  * @author LUCAS
  */
+@Path("/AreaConcentracao")
 public class ServicoAreaConcentracao extends Servico<AreaConcentracaoVO> {
     
     public ServicoAreaConcentracao(Negocio<AreaConcentracaoVO> negocio, Class<AreaConcentracaoVO> classe) {
