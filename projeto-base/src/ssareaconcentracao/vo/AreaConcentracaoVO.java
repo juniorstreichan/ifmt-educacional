@@ -1,11 +1,16 @@
 package ssareaconcentracao.vo;
 
-import base.vo.BaseVO;
+import base.vo.EntidadeVO;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
-public class AreaConcentracaoVO extends BaseVO {
+public class AreaConcentracaoVO extends EntidadeVO {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     
     @Column(length = 10, nullable = false)
     private String identificador;
@@ -14,6 +19,16 @@ public class AreaConcentracaoVO extends BaseVO {
     private String descricao;
     
     public AreaConcentracaoVO(){}
+    
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     public AreaConcentracaoVO(String identificador, String descricao){
         this.identificador = identificador;
@@ -56,4 +71,5 @@ public class AreaConcentracaoVO extends BaseVO {
         }
         return resp;
     }
+
 }

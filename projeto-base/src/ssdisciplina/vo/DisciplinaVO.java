@@ -2,7 +2,6 @@ package ssdisciplina.vo;
 
 import base.vo.EntidadeVO;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
