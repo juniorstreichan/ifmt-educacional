@@ -14,6 +14,10 @@ public abstract class BaseVO implements Serializable, IBaseVO {
     public String getValidacaoMsg() {
         return validacaoMsg;
     }
+
+    public void setValidacaoMsg(String validacaoMsg) {
+        this.validacaoMsg = validacaoMsg;
+    }
     
     @Override
     public abstract String toString();

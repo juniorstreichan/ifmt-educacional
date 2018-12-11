@@ -1,6 +1,7 @@
 package base.negocio;
 
 import base.vo.EntidadeVO;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Negocio<VO extends EntidadeVO> implements INegocio<VO> {
@@ -86,11 +87,22 @@ public abstract class Negocio<VO extends EntidadeVO> implements INegocio<VO> {
     }
     
     public void incluir(VO vo) {
-        listaVO.add(vo);
+        List<VO> novaLista = new ArrayList<>();
+        novaLista.addAll(listaVO);
+        novaLista.add(vo);
+        listaVO = novaLista;
+        System.out.println("tamanho da lista: " + listaVO.size());
     }
-    
+
     public void excluir(VO vo) {
-        listaVO.remove(vo);
+        List<VO> novaLista = new ArrayList<>();
+        for (VO v : listaVO) {
+            if (!v.getId().equals(vo.getId())) {
+                novaLista.add(v);
+            }
+        }
+        listaVO = novaLista;
+        System.out.println("tamanho da lista: " + listaVO.size());
     }
     
 }

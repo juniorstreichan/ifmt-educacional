@@ -23,6 +23,7 @@ public abstract class Servico<VO extends EntidadeVO> implements IServico {
         if (!retorno.isValido()) {
             return gson.toJson(retorno);
         }
+        negocio.incluir(vo);
         return gson.toJson(new RetornoNegocio(true, vo.toString() + " cadastrado com sucesso!"));
     }
 
@@ -33,6 +34,7 @@ public abstract class Servico<VO extends EntidadeVO> implements IServico {
         if (!retorno.isValido()) {
             return gson.toJson(retorno);
         }
+        negocio.alterar(vo);
         return gson.toJson(new RetornoNegocio(true, vo.toString() + " alterado com sucesso!"));
     }
 
@@ -43,6 +45,7 @@ public abstract class Servico<VO extends EntidadeVO> implements IServico {
         if (!retorno.isValido()) {
             return gson.toJson(retorno);
         }
+        negocio.excluir(vo);
         return gson.toJson(new RetornoNegocio(true, vo.toString() + " excluído com sucesso!"));
     }
 
@@ -56,6 +59,7 @@ public abstract class Servico<VO extends EntidadeVO> implements IServico {
         if (vo == null) {
             return gson.toJson(new RetornoNegocio(false, "Nenhum resultado encontrado para o ID " + strId));
         }
+        vo.setValidacaoMsg(null);
         return gson.toJson(vo);
     }
     

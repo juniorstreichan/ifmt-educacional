@@ -63,14 +63,14 @@ public class AreaConcentracaoVO extends EntidadeVO {
     @Override
     public boolean isValido() {
         boolean resp = true;
-
+        validacaoMsg = "";
         if (this.identificador == null || this.identificador.length() == 0 || this.identificador.length() > 10) {
             this.validacaoMsg += "Identificador inválido";
             resp = false;
         }
 
         if (this.descricao == null || this.identificador.length() == 0 || this.identificador.length() > 100) {
-            this.validacaoMsg += "\nNumero invalido para o endereco";
+            this.validacaoMsg += "\nNumero invalido para a descrição";
             resp = false;
         }
         return resp;

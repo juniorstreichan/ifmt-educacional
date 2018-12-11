@@ -1,12 +1,11 @@
 package servico.disciplina;
 
-import base.negocio.Negocio;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import servico.Servico;
@@ -20,19 +19,19 @@ import ssareaconcentracao.vo.AreaConcentracaoVO;
 @Path("/AreaConcentracao")
 public class ServicoAreaConcentracao extends Servico<AreaConcentracaoVO> {
     
-    public ServicoAreaConcentracao(Negocio<AreaConcentracaoVO> negocio, Class<AreaConcentracaoVO> classe) {
+    public ServicoAreaConcentracao() {
         super(new AreaConcentracao(AreaConcentracao.getListaAreaConcentracao()), AreaConcentracaoVO.class);
     }
     
     @GET
-    @Path("/buscarPorId")
+    @Path("/buscarPorId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public String buscarPorId(String strId) {
+    public String buscarPorId(@PathParam("id") String strId) {
         return super.buscarPorId(strId);
     }
 
-    @DELETE
+    @PUT
     @Path("/remover")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

@@ -22,7 +22,7 @@ public class AreaConcentracao extends Negocio<AreaConcentracaoVO> {
             
             area.setId((long) i);
             area.setIdentificador("COD" + i);
-            area.setDescricao("Area " + area.getDescricao());
+            area.setDescricao("Area " + area.getIdentificador());
             
             lista.add(area);
         }
